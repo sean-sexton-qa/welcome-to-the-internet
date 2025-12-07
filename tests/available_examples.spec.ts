@@ -71,13 +71,11 @@ test('should show the list of available examples', async ({ page }) => {
   const missing: string[] = [];
 
   for (const example of expectedExamples) {
-    const locator = page.getByRole('link', { name: example });
-
-    // Instead of expect(...).toBeVisible(), we check manually.
-    const count = await locator.count();
-    if (count === 0) {
-      missing.push(example);
-    }
+    await test.step(`Check that "${example}" examples exists`, async () => {
+      const locator = page.getByRole('link', { name: example });
+      const count = await locator.count();
+      if (count === 0) missing.push(example);
+    });
   }
 
   if (missing.length > 0) {
