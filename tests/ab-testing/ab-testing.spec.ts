@@ -25,3 +25,12 @@ test('should show the correct A/B Testing header for all variants', async ({ pag
     const text = await heading.innerText();
     expect(allowedHeadings).toContain(text);
 });
+
+test('should show the correct A/B Testing description', async ({ page }) => {
+    //When
+    await page.goto('/abtest');
+    //Then
+    await expect(
+        page.locator('#content .example p')
+    ).toContainText('Also known as split testing');
+});
