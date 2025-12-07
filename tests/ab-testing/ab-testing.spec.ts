@@ -10,3 +10,18 @@ test('should navigate to the A/B testing page', async ({ page }) => {
     await expect(page.getByRole('heading', { level: 3 }))
         .toHaveText(/A\/B Test/);
 });
+
+test('should show the correct A/B Testing header for all variants', async ({ page }) => {
+    //When
+    await page.goto('/abtest');
+    //Then
+    const heading = page.getByRole('heading', { level: 3 });
+
+    const allowedHeadings = [
+        'A/B Test Variation 1',
+        'A/B Test Control'
+    ];
+
+    const text = await heading.innerText();
+    expect(allowedHeadings).toContain(text);
+});
