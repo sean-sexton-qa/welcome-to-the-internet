@@ -19,3 +19,13 @@ test('should add a new delete button when clicking "Add Element"', async ({ page
   //Then
   await expect(page.getByRole('button', { name: 'Delete'})).toBeVisible();
 });
+
+test('should add multiple delete buttons when continueing to click "Add Element"', async ({ page }) => {
+  //Given
+  await page.goto('/add_remove_elements/');
+  //When
+  await page.getByRole('button', { name: 'Add Element'}).click();
+  await page.getByRole('button', { name: 'Add Element'}).click();
+  //Then
+  await expect(page.getByRole('button', { name: 'Delete'})).toHaveCount(2);
+});
