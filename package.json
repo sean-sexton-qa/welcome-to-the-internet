@@ -10,7 +10,9 @@
   "description": "",
   "devDependencies": {
     "@playwright/test": "^1.57.0",
-    "@types/node": "^24.10.1"
+    "@types/node": "^24.10.1",
+    "eslint": "^10.0.0",
+    "eslint-plugin-playwright": "^2.5.1"
   },
   "dependencies": {
     "dotenv": "^17.2.3"
